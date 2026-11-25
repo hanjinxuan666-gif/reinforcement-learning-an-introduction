@@ -66,7 +66,7 @@ class Bandit:
             return np.random.choice(np.where(UCB_estimation == q_best)[0])
 
         if self.gradient:
-            exp_est = np.exp(self.q_estimation)
+            exp_est = np.exp(self.q_estimation - np.max(self.q_estimation))
             self.action_prob = exp_est / np.sum(exp_est)
             return np.random.choice(self.indices, p=self.action_prob)
 
